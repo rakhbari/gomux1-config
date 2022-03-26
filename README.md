@@ -1,7 +1,7 @@
 # gomux1-config
 Config repo for gomux1 app
 
-# Helm Deployment
+## Helm Deployment
 The Helm chart for `gomux1` app is under the `helm/` subdir. Apply the deployment to your K8s cluster by:
 ```
 helm template helm/ --name-template <RELEASE-NAME> | kubectl apply -f -
@@ -29,3 +29,9 @@ helm template helm/ --name-template dev --set service.port=8080 | kubectl apply 
 ```
 
 Please refer to the app's docs on how to access the app's endpoints: https://github.com/rakhbari/gomux1#endpoints
+
+## Argo CD
+After installing Argo CD in your K8s cluster, It's best to change its `argocd-server` UI port to `9080`:
+```
+$ kubectl patch svc argocd-server -n argocd --type merge -p '{"spec": {"ports": [{"name":"http","port":9080,"targetPort":8080}]}}'
+```
