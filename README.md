@@ -18,7 +18,7 @@ gomux1   1/1     1            1           5m16s
 
 $ kubectl get service -n gomux1-dev
 NAME     TYPE           CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
-gomux1   LoadBalancer   10.97.33.69   localhost     8080:31571/TCP   5m24s
+gomux1   LoadBalancer   10.97.33.69   localhost     80:31571/TCP   5m24s
 ```
 
 To override any value in the `values.yaml` file, simply use the `--set` option on the `helm` command.
@@ -27,3 +27,5 @@ Example: To override the `service.port` (K8s Service EXTERNAL-IP)
 ```
 helm template helm/ --name-template dev --set service.port=8080 | kubectl apply -f -
 ```
+
+Please refer to the app's docs on how to access the app's endpoints: https://github.com/rakhbari/gomux1#endpoints
