@@ -10,3 +10,9 @@ Example:
 ```
 helm template helm/ --name-template dev | kubectl apply -f -
 ```
+To override any value in the `values.yaml` file, simply use the `--set` option on the `helm` command.
+
+Example: To override the `service.port` (K8s Service EXTERNAL-IP)
+```
+helm template helm/ --name-template dev --set service.port=8080 | kubectl apply -f -
+```
