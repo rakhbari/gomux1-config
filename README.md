@@ -31,6 +31,8 @@ helm template helm/ --name-template dev --set service.port=8080 | kubectl apply 
 Please refer to the app's docs on how to access the app's endpoints: https://github.com/rakhbari/gomux1#endpoints
 
 ## Argo CD
+Go to https://argo-cd.readthedocs.io/en/stable/getting_started/ and follow those instructions to install Argo CD.
+
 After installing Argo CD in your K8s cluster, It's best to change its `argocd-server` UI port to `9080`:
 ```
 $ kubectl patch svc argocd-server -n argocd --type merge -p '{"spec": {"ports": [{"name":"http","port":9080,"targetPort":8080}]}}'
