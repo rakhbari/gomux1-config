@@ -35,7 +35,13 @@ Please refer to the app's docs on how to access the app's endpoints: https://git
 ## Argo CD
 Go to https://argo-cd.readthedocs.io/en/stable/getting_started/ and follow those instructions to install Argo CD.
 
-After installing Argo CD in your K8s cluster, It's best to change its `argocd-server` UI port to `9080`:
+After installing Argo CD in your K8s cluster, make the following 2 changes:
+
+Change the UI Service type to `LoadBalancer`:
+```
+$ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+```
+It's best to change its `argocd-server` UI port to `9080`:
 ```
 $ kubectl patch svc argocd-server -n argocd --type merge -p '{"spec": {"ports": [{"name":"http","port":9080,"targetPort":8080}]}}'
 ```
