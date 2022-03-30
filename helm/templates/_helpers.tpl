@@ -40,6 +40,7 @@ helm.sh/chart: {{ include "helm.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+gomux1.custom1: value1
 {{- end }}
 
 {{/*
